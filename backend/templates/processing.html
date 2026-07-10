@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing - Meeting Minutes Generator</title>
+    <link rel="stylesheet" href="/static/css/processing.css">
+</head>
+<body>
+<div class="container">
+    <div class="processing-card">
+        <h1>Generating Meeting Minutes</h1>
+        <p class="subtitle">Your audio is being converted into structured meeting notes.</p>
+        <div class="steps">
+            <div class="step active">
+                <span class="icon">✓</span>
+                <p>Audio Upload</p>
+            </div>
+            <div class="step">
+                <span class="icon">○</span>
+                <p>Audio Preprocessing</p>
+            </div>
+            <div class="step">
+                <span class="icon">○</span>
+                <p>Speech Transcription</p>
+            </div>
+            <div class="step">
+                <span class="icon">○</span>
+                <p>Speaker Diarization</p>
+            </div>
+            <div class="step">
+                <span class="icon">○</span>
+                <p>AI Analysis</p>
+            </div>
+            <div class="step">
+                <span class="icon">○</span>
+                <p>Final Report</p>
+            </div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p class="status" id="statusText">Processing audio...</p>
+    </div>
+</div>
+<script src="/static/js/processing.js"></script>
+</body>
+</html>

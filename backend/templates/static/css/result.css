@@ -1,0 +1,237 @@
+/* ==========================================
+   Global
+========================================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",sans-serif;
+}
+body{
+    background:#f5f7fb;
+    color:#1e293b;
+    line-height:1.6;
+}
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+.page-header h1{
+    font-size:34px;
+    margin-bottom:8px;
+}
+.subtitle{
+    color:#64748b;
+    font-size:15px;
+}
+.header-buttons{
+    display:flex;
+    gap:15px;
+}
+.btn{
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+.pdf-btn{
+    background:#ef4444;
+    color:white;
+}
+.pdf-btn:hover{
+    background:#dc2626;
+}
+.doc-btn{
+    background:#2563eb;
+    color:white;
+}
+.doc-btn:hover{
+    background:#1d4ed8;
+}
+
+/* ==========================================
+   Cards
+========================================== */
+
+.card{
+    background:white;
+    padding:28px;
+    border-radius:16px;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+.card h2{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#2563eb;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+/* ==========================================
+   Meeting Information
+========================================== */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+.info-grid label{
+    display:block;
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:6px;
+}
+.info-grid p{
+    font-weight:600;
+    font-size:16px;
+}
+
+/* ==========================================
+   Summary & Objective
+========================================== */
+#summary,
+#objective{
+    font-size:16px;
+    color:#334155;
+}
+
+/* ==========================================
+   Lists
+========================================== */
+
+ul,
+ol{
+    padding-left:25px;
+}
+li{
+    margin-bottom:12px;
+}
+/* ==========================================
+   Action Table
+========================================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+thead{
+    background:#2563eb;
+    color:white;
+}
+th{
+    padding:14px;
+    text-align:left;
+}
+td{
+    padding:14px;
+    border-bottom:1px solid #e2e8f0;
+}
+tbody tr:hover{
+    background:#f8fafc;
+}
+
+/* ==========================================
+   Transcript
+========================================== */
+
+.speaker-card{
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    padding:18px;
+    border-radius:10px;
+    margin-bottom:18px;
+}
+.speaker-name{
+    font-weight:700;
+    color:#2563eb;
+    margin-bottom:8px;
+}
+
+/* ==========================================
+   Badges (Future Use)
+========================================== */
+
+.badge{
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+.badge-success{
+    background:#dcfce7;
+    color:#15803d;
+}
+.badge-warning{
+    background:#fef3c7;
+    color:#b45309;
+}
+.badge-danger{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+/* ==========================================
+   Hover
+========================================== */
+
+.card:hover{
+    transform:translateY(-2px);
+    transition:.3s;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:900px){
+.info-grid{
+    grid-template-columns:1fr;
+}
+.page-header{
+    flex-direction:column;
+    align-items:flex-start;
+}
+    .header-buttons{
+    width:100%;
+}
+.btn{
+    flex:1;
+}
+}
+@media(max-width:600px){
+.container{
+    width:95%;
+    margin:20px auto;
+}
+.card{
+    padding:20px;
+}
+.page-header h1{
+    font-size:28px;
+}
+table{
+    display:block;
+    overflow-x:auto;
+}
+}

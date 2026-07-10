@@ -1,0 +1,45 @@
+# ======================================
+# WhisperX Environment
+# Python 3.11
+# Windows (CPU)
+# ======================================
+
+# Core Deep Learning
+torch==2.2.2
+torchaudio==2.2.2
+
+# WhisperX
+whisperx==3.3.1
+faster-whisper==1.1.0
+ctranslate2==4.4.0
+
+# Speaker Diarization
+pyannote.audio==3.3.2
+speechbrain==0.5.16
+
+# Hugging Face
+transformers==4.44.2
+huggingface-hub==0.24.7
+tokenizers==0.19.1
+safetensors==0.4.5
+
+# Audio
+ffmpeg-python==0.2.0
+soundfile==0.12.1
+librosa==0.10.2.post1
+
+# Data Processing
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.13.1
+
+# Utilities
+tqdm==4.66.5
+requests==2.32.3
+pyyaml==6.0.2
+omegaconf==2.3.0
+einops==0.8.0
+sentencepiece==0.2.0
+
+# NLP
+nltk==3.9.1

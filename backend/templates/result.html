@@ -1,0 +1,165 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meeting Minutes</title>
+        <link rel="stylesheet" href="/static/css/result.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    </head>
+    <body>
+    <div class="container">
+        <!-- ================= Header ================= -->
+        <header class="page-header">
+            <div>
+                <h1>Meeting Minutes</h1>
+                <p class="subtitle">AI Generated Meeting Report</p>
+            </div>
+            <div class="header-buttons">
+                <button class="btn pdf-btn">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Export PDF
+                </button>
+                <button class="btn doc-btn">
+                    <i class="fa-solid fa-file-word"></i>
+                    Export DOCX
+                </button>
+            </div>
+        </header>
+        <!-- ================= Meeting Information ================= -->
+        <section class="card">
+            <h2>Meeting Information</h2>
+            <div class="info-grid">
+                <div>
+                    <label>Title</label>
+                    <p id="meetingTitle">Weekly Project Review</p>
+                </div>
+                <div>
+                    <label>Date</label>
+                    <p id="meetingDate">09 July 2026</p>
+                </div>
+                <div>
+                    <label>Duration</label>
+                    <p id="meetingDuration">45 Minutes</p>
+                </div>
+                <div>
+                    <label>Participants</label>
+                    <p id="participants">Alice, Bob, Charlie</p>
+                </div>
+            </div>
+        </section>
+        <!-- ================= Summary ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-align-left"></i>
+                Summary
+            </h2>
+            <p id="summary">Meeting summary will appear here.</p>
+        </section>
+        <!-- ================= Objective ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-bullseye"></i>
+                Meeting Objective
+            </h2>
+            <p id="objective">Meeting objective appears here.</p>
+        </section>
+        <!-- ================= Key Points ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-list-check"></i>
+                Key Discussion Points
+            </h2>
+            <ul id="keyPoints">
+                <li>Point 1</li>
+                <li>Point 2</li>
+                <li>Point 3</li>
+            </ul>
+        </section>
+        <!-- ================= Action Items ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-square-check"></i>
+                Action Items
+            </h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Owner</th>
+                    <th>Task</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody id="actionItems">
+                <tr>
+                    <td>Alice</td>
+                    <td>Deploy Backend</td>
+                    <td>Pending</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <!-- ================= Decisions ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-circle-check"></i>
+                Decisions
+            </h2>
+            <ul id="decisions">
+                <li>Decision 1</li>
+                <li>Decision 2</li>
+            </ul>
+        </section>
+        <!-- ================= Questions ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-circle-question"></i>
+                Questions Raised
+            </h2>
+            <ul id="questions">
+                <li>Question 1</li>
+            </ul>
+        </section>
+        <!-- ================= Risks ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Risks
+            </h2>
+            <ul id="risks">
+                <li>Risk 1</li>
+            </ul>
+        </section>
+        <!-- ================= Next Steps ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-forward"></i>
+                Next Steps
+            </h2>
+            <ol id="nextSteps">
+                <li>Complete development</li>
+                <li>Deploy application</li>
+            </ol>
+        </section>
+        <!-- ================= Transcript ================= -->
+        <section class="card">
+            <h2>
+                <i class="fa-solid fa-microphone-lines"></i>
+                Transcript
+            </h2>
+            <div id="transcript">
+                <div class="speaker-card">
+                    <div class="speaker-name">Speaker 1</div>
+                    <p>Welcome everyone. Let's begin today's meeting.</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-name">Speaker 2</div>
+                    <p>Today's agenda includes deployment planning.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="/static/js/result.js"></script>
+    </body>
+    </html>

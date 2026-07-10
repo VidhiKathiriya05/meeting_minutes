@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Minutes Generator</title>
+
+    <link rel="stylesheet" href="/static/css/upload.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Meeting Minutes Generator</h1>
+            <p>
+                Upload your meeting audio and generate structured meeting
+                minutes in seconds.
+            </p>
+        </header>
+
+        <!-- Upload Card -->
+        <div class="upload-card">
+            <form id="uploadForm">
+                <!-- Drag & Drop Area -->
+                <div class="drop-area" id="dropArea">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <h2>Upload Audio File</h2>
+                    <p>
+                        Drag & Drop your audio file here
+                    </p>
+                    <span>or</span>
+                    <label for="audioFile" class="browse-btn">
+                        Browse File
+                    </label>
+                    <input
+                        type="file"
+                        id="audioFile"
+                        name="audio"
+                        accept=".mp3,.wav,.m4a"
+                        hidden
+                    >
+
+                    <p class="supported">
+                        Supported Formats: MP3 • WAV • M4A
+                    </p>
+                </div>
+                <!-- Selected File -->
+                <div class="file-info">
+                    <label>Selected File</label>
+                    <p id="selectedFile">
+                        No file selected
+                    </p>
+                </div>
+
+                <!-- Meeting Title -->
+                <div class="input-group">
+                    <label for="meetingTitle">
+                        Meeting Title (Optional)
+                    </label>
+                    <input
+                        type="text"
+                        id="meetingTitle"
+                        placeholder="Enter meeting title"
+                        required
+                    >
+                </div>
+                <!-- Generate Button -->
+                <button
+                    type="submit"
+                    class="generate-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Generate Minutes
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="/static/js/upload.js"></script>
+</body>
+</html>
