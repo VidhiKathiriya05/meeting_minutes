@@ -1,11 +1,23 @@
 from fastapi import APIRouter
-from pydantic import BaseModel 
+from pydantic import BaseModel
 
-from app.services.rag.qa import ask_meeting 
-router =APIRouter(prefix="/meeting",tags=['chat'])
+from app.services.chat_services import ask_question
 
-class ChatRequest(BaseModel): question:str
+router = APIRouter(
+    prefix="/chat",
+    tags=["Chat"]
+)
 
-@router.post("/{meeting_id}/ask")
-def chat(meeting_id:int, request:ChatRequest):
-    return ask_meeting(request.question,meeting_id)
+
+class ChatRequest(BaseModel):
+    meeting_id: int
+    question: str
+
+
+@router.post("/")
+def chat(req: ChatRequest):
+
+    return ask_question(
+        meeting_id=req.meeting_id,
+        question=req.question
+    )

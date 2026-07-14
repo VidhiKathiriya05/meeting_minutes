@@ -1,4 +1,9 @@
-backend/whisperx_env/
+# ==========================
+# Virtual Environments (project-specific)
+# ==========================
+backend/whisperx_venv/
+backend/diarize_env/
+
 # ==========================
 # Python
 # ==========================

@@ -4,7 +4,7 @@ from app.services.audio.converter import convert_to_wav
 from app.services.audio.noise import reduce_noise
 from app.services.audio.validator import validate_audio
 
-PROCESSED_DIR = Path("processed_audio")
+PROCESSED_DIR = Path("processed_audio").resolve()
 PROCESSED_DIR.mkdir(exist_ok=True)
 
 def preprocess_audio(audio_path:str)->dict:

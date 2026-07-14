@@ -1,0 +1,40 @@
+{% comment %} TRANSCRIPT PANEL {% endcomment %}
+.transcript-container{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+{% comment %} SPEAKER CARD {% endcomment %}
+.speaker-card{
+    padding:22px;
+    border-radius:20px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    transition:.25s ease;
+}
+.speaker-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(99,102,241,.4);
+}
+{% comment %} SPEAKER NAME {% endcomment %}
+.speaker-name{
+    font-size:14px;
+    font-weight:600;
+    color:#a5b4fc;
+    margin-bottom:12px;
+}
+{% comment %}  TRANSCRIPT TEXT {% endcomment %}
+.speaker-card pre{
+    white-space:pre-wrap;
+    font-family:Inter,sans-serif;
+    color:var(--text-primary);
+    line-height:1.8;
+    font-size:15px;
+}
+   {% comment %} TIMESTAMP {% endcomment %}
+.timestamp{
+    font-size:12px;
+    color:var(--text-secondary);
+    margin-top:8px;
+}

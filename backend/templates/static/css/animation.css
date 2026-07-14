@@ -1,0 +1,98 @@
+/* ==========================================
+   GLOBAL ANIMATIONS
+========================================== */
+
+
+/* Page entrance */
+.dashboard,
+.sidebar,
+.navbar,
+.workspace{
+    animation:fadeIn .45s ease forwards;
+}
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+   {% comment %} TAB TRANSITION {% endcomment %}
+.tab-panel{
+    display:none;
+    animation:slideUp .35s ease;
+}
+.tab-panel.active{
+    display:block;
+}
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+   {% comment %} BUTTON EFFECTS {% endcomment %}
+button{
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+button:hover{
+    transform:translateY(-2px);
+}
+button:active{
+    transform:scale(.97);
+}
+   {% comment %} CARD HOVER {% endcomment %}
+.card,
+.stat-card,
+.analytics-card,
+.speaker-card{
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+.card:hover,
+.stat-card:hover,
+.analytics-card:hover,
+.speaker-card:hover{
+    transform:translateY(-5px);
+}
+   {% comment %} CHAT MESSAGE ANIMATION {% endcomment %}
+.chat-message{
+    animation:messageAppear .3s ease;
+}
+@keyframes messageAppear{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+   {% comment %} LOADING PULSE {% endcomment %}
+.loading{
+    animation:pulse 1.4s infinite;
+}
+@keyframes pulse{
+    0%{
+        opacity:.5;
+    }
+    50%{
+        opacity:1;
+    }
+    100%{
+        opacity:.5;
+    }
+}

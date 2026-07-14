@@ -15,8 +15,15 @@ def  meeting_analysis_prompt(transcript:str)->str:
         "owner":"",
         "deadline":""
     }}
-    - Ignore greetings, introductions filler conversation and jokes.
+    - Ignore only casual greetings such as
+"hello",
+"good morning",
+"how are you",
+"thank you everyone",
+small talk,
+and unrelated chit-chat.
 
+Do NOT ignore presentations, speeches, lectures, interviews, or discussions.
     return only valid JSON.
     
     JSON Schema:
@@ -50,6 +57,33 @@ def  meeting_analysis_prompt(transcript:str)->str:
     10. do not classify the meeting type.
     11. do not generate a meeting summary.
     12. do not generate a sentiment.
+    KEY POINTS
+
+    Extract the main ideas being communicated.
+
+    For presentations or speeches,
+    extract the speaker's main messages.
+
+    Return 3–8 concise bullet points whenever possible.
+
+    Do not return [] unless no meaningful information exists.
+    
+    PARTICIPANTS RULES:
+    A participant is someone who actively speaks in THIS transcript chunk,
+    or is explicitly introduced/addressed as attending this meeting.
+
+    Do NOT include:
+    - People merely mentioned in conversation (e.g. "let's ask Mac" does not make Mac a participant)
+    - People referred to by relationship (husband, wife, manager, teammate, etc.) without speaking
+    - Third parties, customers, companies, historical figures, or examples used in discussion
+    - Anyone you are inferring from context rather than directly observing speaking/introduction
+
+    If uncertain whether someone is a participant, exclude them. If exactly one unidentified person is speaking,
+return
+
+["Speaker"]
+
+instead of [].
     
     Transcript:
 
@@ -72,7 +106,8 @@ def final_merge_prompt(results:list)-> str:
     below are structured JSON outputs extracted from different chunks of the SAME meeting.
     your job is to merge them into ONE final meeting report.
     IMPORTANT RULES:
-    1. the meeting is continuous.
+    1. Merge ONLY the information provided.
+    Do not add information that does not appear in any chunk.
     2. Merge duplicated information.
     3. Remove repeated key points. 
     4. remove repeated action items.
@@ -89,12 +124,29 @@ def final_merge_prompt(results:list)-> str:
         - None
         - "unknown"
         - "not mentioned"
-    14. infer missing information whenever it is clearly implied.
-    15. generate ONE overall meeting summary 
-    16. determine ONE meeting type for the entire meeting  
-    17. determine ONE overall sentiments.
+    
+    15. Generate the meeting summary ONLY from the extracted chunk data.
+    16. If the meeting objective genuinely cannot be inferred from any chunk,
+    describe what was actually discussed instead of returning ""..
+    17. MEETING TYPE
 
-    return ONLY valid JSON.
+Classify the overall nature of this content in a few words, e.g.:
+"Team Meeting", "Interview", "Podcast Discussion", "Lecture/Presentation",
+"Planning Session", "Status Update", "Panel Discussion".
+
+Base this on the actual structure of the conversation (single speaker vs.
+multiple participants, presence of Q&A, formal vs. informal tone).
+
+Only return "" if the content is too fragmented or unclear to classify at all.
+    18. If the sentiment is unclear, return
+{{
+    "overall":"",
+    "confidence":""
+}}
+    19. Never invent projects, budgets, deadlines, marketing campaigns,
+resource allocation, action items, or participants.
+    20. Every field must be supported by the transcript.
+return ONLY valid JSON.
 
     Schema:
 
@@ -145,16 +197,17 @@ SUMMARY REQUIREMENTS
 
 The summary should NOT be a concatenation.
 
-Instead create:
+SUMMARY REQUIREMENTS
 
-• Meeting objective
+Write "summary" as a single well-formed paragraph (not a list, not separate
+labeled sections, not a nested object) that naturally covers: the objective,
+the main points discussed, key conclusions, and the outcome — as flowing prose.
 
-• Main discussion
+Even if the input is short, informal, or from a single speaker (e.g. a talk,
+lecture, or presentation rather than a multi-person discussion), still write
+a concise 2-4 sentence summary reflecting the actual content.
 
-• Important conclusions
-
-• Final outcome
-
+Only return "" if the input text contains no substantive content at all.
 KEY POINTS
 
 Return only the most important points.
@@ -178,25 +231,6 @@ Do not include names merely mentioned during discussion.
 Do not infer participants from context.
 Do not guess names from unclear transcription.
 If confidence is low, return [].
-
-Extract only people who are actively participating in the conversation.
-Do NOT include:
-- People mentioned as examples.
-- Family members.
-- Celebrities discussed.
-- Historical figures.
-- Companies.
-- Customers.
-- Third parties.
-- People referred to as "he", "she", "her husband", "his manager", etc.
-A participant must satisfy at least one of these:
-- Speaks in the transcript.
-- Is explicitly introduced as attending the meeting.
-- Is directly addressed as part of the meeting.
-If uncertain, exclude the name.
-Return [] rather than guessing.
-PARTICIPANTS RULES
-
 A participant is someone who actively speaks in this transcript.
 
 Do NOT include:
@@ -214,6 +248,25 @@ Transcript: "my husband"
 ❌ Ritesh
 ❌ Husband
 ✅ Return nothing
+
+
+Extract only people who are actively participating in the conversation.
+Do NOT include:
+- People mentioned as examples.
+- Family members.
+- Celebrities discussed.
+- Historical figures.
+- Companies.
+- Customers.
+- Third parties.
+- People referred to as "he", "she", "her husband", "his manager", etc.
+A participant must satisfy at least one of these:
+- Speaks in the transcript.
+- Is explicitly introduced as attending the meeting.
+- Is directly addressed as part of the meeting.
+If uncertain, exclude the name.
+Return [] rather than guessing.
+
 
 RISKS
 return only actual project/business risks.

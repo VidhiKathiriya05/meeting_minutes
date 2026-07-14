@@ -20,3 +20,7 @@ async def processing_page(request: Request):
 @router.get("/result", response_class=HTMLResponse)
 async def result_page(request: Request):
     return templates.TemplateResponse("result.html", {"request": request})
+
+@router.get("/index",response_class=HTMLResponse)
+async def index_page(request:Request): 
+    return templates.TemplateResponse("index.html",{"request":request})

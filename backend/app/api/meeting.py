@@ -65,10 +65,11 @@ def read_meeting(meeting_id:int,db:Session=Depends(get_db)):
     return {
     "id": meeting.id,
     "title": meeting.title,
-    "summary": parse_json_field(meeting.summary),
+    "summary": meeting.summary or "",
     "status": meeting.status,
     "progress":meeting.progress,
     "transcript": meeting.transcript,
+    "speaker_transcript":meeting.speaker_transcript,
     "meeting_type": meeting.meeting_type,
     "participants": parse_json_field(meeting.participants),
     "key_points": parse_json_field(meeting.key_points),

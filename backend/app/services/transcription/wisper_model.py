@@ -1,7 +1,7 @@
 from faster_whisper import WhisperModel
 # Load model only once
 # tiny, base, small, medium, large-v3
-MODEL_SIZE = "base"
+MODEL_SIZE = "medium"
 
 print("Loading Whisper model...")
 model = WhisperModel(

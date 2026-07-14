@@ -10,6 +10,10 @@ async function loadMeeting() {
             throw new Error("Unable to load meeting.");
         }
         const meeting = await response.json();
+        console.log(meeting);
+        console.log(meeting.speaker_transcript);
+        console.log("Transcript:", meeting.transcript);
+        
         // ===========================
         // Basic Information
         // ===========================
@@ -23,24 +27,22 @@ async function loadMeeting() {
             meeting.participants?.join(", ") || "N/A";
         
         if (meeting.summary && typeof meeting.summary === "object") {
+            // Fallback for older meetings saved before the summary format was fixed
             const s = meeting.summary;
-            const conclusions = (s.important_conclusions || [])
-                .map(item => `<li>${item}</li>`)
-                .join("");
             document.getElementById("summary").innerHTML = `
                 <p><strong>Objective:</strong> ${s.meeting_objective || "-"}</p>
                 <p><strong>Discussion:</strong> ${s.main_discussion || "-"}</p>
-                <p><strong>Conclusions:</strong></p>
-                <ul>${conclusions || "<li>None</li>"}</ul>
+                <p><strong>Conclusions:</strong> ${s.important_conclusions || "-"}</p>
                 <p><strong>Outcome:</strong> ${s.final_outcome || "-"}</p>
             `;
+
+        } else if (meeting.summary && typeof meeting.summary === "string" && meeting.summary.trim() !== "") {
+            // Current format: summary is a single paragraph string
+            document.getElementById("summary").innerHTML = `<p>${meeting.summary}</p>`;
+
         } else {
-            document.getElementById("summary").textContent =
-                meeting.summary || "No summary available.";
+            document.getElementById("summary").textContent = "No summary available.";
         }
-        document.getElementById("objective").textContent =
-            meeting.meeting_type || "N/A";
-        // ===========================
         // Helper Function
         // ===========================
         function populateList(id, items) {
@@ -82,24 +84,39 @@ async function loadMeeting() {
         // ===========================
         // Transcript
         // ===========================
-        const transcript = document.getElementById("transcript");
+                const transcript = document.getElementById("transcript");
         transcript.innerHTML = "";
-        if (meeting.transcript) {
+
+        if (meeting.speaker_transcript) {
             const div = document.createElement("div");
             div.className = "speaker-card";
-            
-            div.innerHTML = `<div class="speaker-name">Transcript</div>
-            <p>${meeting.transcript}</p>`;
+
+            div.innerHTML = `
+                <div class="speaker-name">Speaker Transcript</div>
+                <pre>${meeting.speaker_transcript}</pre>
+            `;
+
+            transcript.appendChild(div);
+
+        } else if (meeting.transcript) {
+            const div = document.createElement("div");
+            div.className = "speaker-card";
+
+            div.innerHTML = `
+                <div class="speaker-name">Transcript</div>
+                <pre>${meeting.transcript}</pre>
+            `;
+
             transcript.appendChild(div);
         }
-    }
-    catch (error) {
+
+    } catch (error) {
         console.error(error);
         alert("Failed to load meeting.");
     }
 }
-loadMeeting();
 
+loadMeeting();
 // ===========================
 // Export Buttons
 // ===========================

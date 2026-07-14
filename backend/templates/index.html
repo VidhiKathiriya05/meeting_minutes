@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Minutes AI</title>
+    
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    
+          <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static/font/lucide.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/variables.css">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/tabs.css">
+    <link rel="stylesheet" href="/static/css/chat.css">
+    <link rel="stylesheet" href="/static/css/transcript.css">
+    <link rel="stylesheet" href="/static/css/analytics.css">
+    <link rel="stylesheet" href="/static/css/summary.css">
+    <link rel="stylesheet" href="/static/css/animation.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+</head>
+<body>
+<div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>📄 Meeting Minutes</h2>
+        </div>
+        <button class="upload-btn">
+            + Upload Meeting
+        </button>
+        <div class="sidebar-search">
+            Search
+        </div>
+        <div class="meeting-list">
+            <h4>Today</h4>
+            <div class="meeting-item active">
+              📄  Sprint Planning
+            </div>
+            <div class="meeting-item">
+                📄  Client Meeting
+            </div>
+            <h4>Yesterday</h4>
+            <div class="meeting-item">
+              📄  Weekly Review
+            </div>
+            <div class="meeting-item">
+              📄  HR Interview
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+        <!-- Navbar -->
+        <header class="navbar">
+            <input type="text" placeholder="🔍 Search meetings...">
+        </header>
+        <!-- Dashboard -->
+        <section class="dashboard">
+            <h1>Dashboard</h1>
+
+            <!-- KPI Cards -->
+            <div class="stats-grid">
+
+
+    <div class="stat-card">
+
+        <div class="stat-label">
+            Meetings
+        </div>
+
+        <div class="stat-value">
+            0
+        </div>
+
+        <div class="stat-footer">
+            Total meetings
+        </div>
+
+    </div>
+
+
+
+    <div class="stat-card">
+
+        <div class="stat-label">
+            Pending
+        </div>
+
+        <div class="stat-value">
+            0
+        </div>
+
+        <div class="stat-footer">
+            Processing
+        </div>
+
+    </div>
+
+
+
+    <div class="stat-card">
+
+        <div class="stat-label">
+            Completed
+        </div>
+
+        <div class="stat-value">
+            0
+        </div>
+
+        <div class="stat-footer">
+            Completed reports
+        </div>
+
+    </div>
+
+
+
+    <div class="stat-card">
+
+        <div class="stat-label">
+            Avg Time
+        </div>
+
+        <div class="stat-value">
+            0
+        </div>
+
+        <div class="stat-footer">
+            Processing speed
+        </div>
+
+    </div>
+
+
+</div>
+
+            <!-- Workspace -->
+            <div class="workspace">
+
+    <div class="workspace-tabs">
+        
+        <button class="tab-btn active" data-tab="summary">
+            <i class="icon-file-text"></i>
+            Summary
+        </button>
+
+        <button class="tab-btn" data-tab="transcript">
+            <i class="icon-align-left"></i>
+            Transcript
+        </button>
+
+        <button class="tab-btn" data-tab="chat">
+            <i class="icon-message-circle"></i>
+            Chat
+        </button>
+
+        <button class="tab-btn" data-tab="analytics">
+            <i class="icon-bar-chart"></i>
+            Analytics
+        </button>
+    </div>
+
+    <div class="workspace-body">
+
+
+    <!-- Summary -->
+    <div class="tab-panel active" id="summary">
+
+
+    <div class="summary-container">
+
+
+        <!-- Meeting Overview -->
+
+        <div class="summary-card">
+
+            <h2>
+                📄 Meeting Overview
+            </h2>
+
+
+            <div class="overview-grid">
+
+
+                <div class="overview-item">
+
+                    <span>
+                        Title
+                    </span>
+
+                    <strong id="summaryTitle">
+                        Sprint Planning
+                    </strong>
+
+                </div>
+
+
+
+                <div class="overview-item">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong id="summaryDate">
+                        14 July 2026
+                    </strong>
+
+                </div>
+
+
+
+                <div class="overview-item">
+
+                    <span>
+                        Participants
+                    </span>
+
+                    <strong id="summaryParticipants">
+                        Team Members
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- AI Summary -->
+
+        <div class="summary-card">
+
+
+            <h2>
+                ✨ AI Summary
+            </h2>
+
+
+            <p id="summaryText">
+
+                Meeting summary will appear here after processing.
+
+            </p>
+
+
+        </div>
+
+
+
+
+
+        <!-- Key Points -->
+
+        <div class="summary-card">
+
+
+            <h2>
+                🔑 Key Discussion Points
+            </h2>
+
+
+            <ul id="summaryKeyPoints">
+
+                <li>
+                    Project planning discussion
+                </li>
+
+                <li>
+                    Task allocation
+                </li>
+
+                <li>
+                    Deployment timeline
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+
+
+
+
+        <!-- Action Items -->
+
+        <div class="summary-card">
+
+
+            <h2>
+                ✅ Action Items
+            </h2>   
+            <div id="summaryActions">
+                <div class="action-item">
+                    <span>
+                        Backend deployment
+                    </span>
+                    <span class="status pending">
+                        Pending
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Transcript -->
+    <div class="tab-panel" id="transcript">
+
+    <div class="transcript-container">
+
+        <div class="speaker-card">
+
+            <div class="speaker-name">
+                Speaker 1
+            </div>
+
+            <pre>
+Welcome everyone.
+Let's start today's meeting.
+            </pre>
+
+        </div>
+
+
+        <div class="speaker-card">
+
+            <div class="speaker-name">
+                Speaker 2
+            </div>
+
+            <pre>
+Today's discussion is about deployment planning.
+            </pre>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+    <!-- Chat -->
+    <div class="tab-panel" id="chat">
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-empty">
+                    <h2> Meeting AI Assistant
+                    </h2>
+                    <p>
+                        Ask anything about this meeting.
+                        <br><br>
+                        Examples:
+                        <br><br>
+                        • What decisions were made?
+                        <br>
+                        • What are the action items?
+                        <br>
+                        • Who is responsible for deployment?
+                    </p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input id="chatInput" type="text" placeholder="Ask about this meeting...">
+                <button id="sendBtn" class="send-btn">→
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Analytics -->
+    <div class="tab-panel" id="analytics">
+
+    <div class="analytics-container">
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-title">
+                Meeting Duration
+            </div>
+
+            <div class="analytics-value">
+                45 min
+            </div>
+
+        </div>
+
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-title">
+                Speakers
+            </div>
+
+            <div class="analytics-value">
+                5
+            </div>
+
+        </div>
+
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-title">
+                Action Items
+            </div>
+
+            <div class="analytics-value">
+                12
+            </div>
+
+        </div>
+
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-title">
+                Completion
+            </div>
+
+            <div class="analytics-value">
+                80%
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div class="progress-fill"></div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="insight-box">
+
+        AI Insight:
+        <br>
+        Most discussion focused on project planning,
+        task ownership, and deployment decisions.
+
+    </div>
+
+
+</div>
+    </div>
+</div>
+    </section>
+    </main>
+</div>
+<script src="/static/js/app.js"></script>
+<script src ="/static/js/chat.js"></script>
+</body>
+</html>

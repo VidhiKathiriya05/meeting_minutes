@@ -68,7 +68,7 @@ def upload_audio(
         db=db,
         title=title,
         original_filename=audio.filename,
-        audio_file=str(filepath)
+        audio_file=str(filepath.resolve())
     )
     print("created meeting: ",meeting.id)
     # Start AI processing in background

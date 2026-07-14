@@ -15,7 +15,6 @@ ctranslate2==4.4.0
 
 # Speaker Diarization
 pyannote.audio==3.3.2
-speechbrain==0.5.16
 
 # Hugging Face
 transformers==4.44.2

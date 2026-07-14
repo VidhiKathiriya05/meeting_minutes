@@ -1,11 +1,17 @@
-import whisperx
-device = "cpu"
+from app.services.transcription.whisperx import whisper_service
 
-print("loading model...")
-model = whisperx.load_model("base", device =device, compute_type="int8")
-print("model loaded successfully")
+audio_path = r"C:\Users\Excel\Downloads\test1.mp3"
 
-audio = whisperx.load_audio(r"processed_audio\2df9bfaf-753e-4a38-9d77-737d569c23b7_processed.wav")
+result = whisper_service.transcribe(audio_path)
 
-result = model.transcribe(audio)
-print(result)
+print("\nDetected Language:")
+print(result["language"])
+
+print("\nTranscript:")
+print(result["transcript"])
+
+print("\nSegments:")
+print(len(result["segments"]))
+
+print("\nWord Segments:")
+print(len(result["word_segments"]))

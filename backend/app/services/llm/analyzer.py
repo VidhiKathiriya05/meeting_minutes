@@ -8,22 +8,41 @@ from app.services.llm.prompts import meeting_analysis_prompt, final_merge_prompt
 
 client = OllamaClient()
 
-
-
 def clean_json_response(response: str):
     response = response.strip()
+    response = response.replace("```json", "")
+    response = response.replace("```", "")
 
-    # Remove markdown
-    response = re.sub(r"```json", "", response)
-    response = re.sub(r"```", "", response)
+    print("\n===== CLEAN RESPONSE =====")
+    print(repr(response))
 
-    # Extract only JSON object
-    match = re.search(r"\{.*\}", response, re.DOTALL)
+    start = response.find("{")
+    end = response.rfind("}")
 
-    if not match:
-        raise ValueError("No JSON found.")
+    print("Start:", start)
+    print("End:", end)
 
-    return json.loads(match.group())
+    if start == -1:
+        raise ValueError("No opening brace found.")
+
+    if end == -1:
+        # Repair attempt: model likely got cut off before closing the object.
+        print("No closing brace found — attempting repair by appending '}'")
+        repaired = response.rstrip().rstrip(",") + "\n}"
+        try:
+            parsed = json.loads(repaired[start:])
+            print("Repair succeeded.")
+            return parsed
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Missing closing brace. Repair attempt also failed: {e}")
+
+    json_text = response[start:end + 1]
+
+    print("\n===== JSON TO PARSE =====")
+    print(json_text)
+    print("=========================")
+
+    return json.loads(json_text)
 
 def analyze_chunk(chunk: str):
     
@@ -33,8 +52,9 @@ def analyze_chunk(chunk: str):
 
     response = client.generate(prompt, model=settings.CHUNK_MODEL)
 
-    print("\n CHUNK RESPONSE ")
-    print(response)
+    print("\n===== RAW RESPONSE =====")
+    print(repr(response))
+    print("========================")
     print("====================================\n")
 
     try:
@@ -49,9 +69,10 @@ def analyze_chunk(chunk: str):
                 "overall": "Neutral",
                 "confidence": "Medium"
             }
-    except Exception:
+    except Exception as e:
+        print("Chunk JSON Error:", e)
+        print(response)
         result = {}
-
     defaults = {
         "participants": [],
         

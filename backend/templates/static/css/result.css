@@ -235,3 +235,10 @@ table{
     overflow-x:auto;
 }
 }
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+    margin: 0;
+}

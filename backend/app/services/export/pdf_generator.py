@@ -238,7 +238,7 @@ def generate_pdf(meeting):
 
     # TRANSCRIPT
 
-    transcript = meeting.transcript or ""
+    transcript = meeting.speaker_transcript or meeting.transcript
 
     if transcript.strip():
 

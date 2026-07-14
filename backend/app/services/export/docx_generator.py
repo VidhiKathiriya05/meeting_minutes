@@ -150,10 +150,10 @@ def generate_docx(meeting):
         add_heading(doc, "Next Steps")
         add_list(doc, next_steps)
 
-    if meeting.transcript:
+    if meeting.speaker_transcript:
 
         add_heading(doc, "Complete Meeting Transcript")
-        doc.add_paragraph(meeting.transcript)
+        doc.add_paragraph(meeting.speaker_transcript)
 
     doc.save(docx_path)
 

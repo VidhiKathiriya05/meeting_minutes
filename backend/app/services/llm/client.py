@@ -23,9 +23,13 @@ class OllamaClient:
                         "role": "user",
                         "content": prompt
                     }
-                ], options={"temperature ":0, "top_p":1,"top_k":1, "seed":42, "num_predict":2048}
+                ], options={"temperature": 0, "top_p":1,"top_k":1, "seed":42, "num_predict":2048}
+
             )
 
+            print("\n========== OLLAMA RESPONSE ==========")
+            print(response)
+            print("====================================")
             print("Ollama connected successfully.")
             return response["message"]["content"]
 
