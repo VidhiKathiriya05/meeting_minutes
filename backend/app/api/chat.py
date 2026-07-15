@@ -17,7 +17,11 @@ class ChatRequest(BaseModel):
 @router.post("/")
 def chat(req: ChatRequest):
 
-    return ask_question(
+    answer = ask_question(
         meeting_id=req.meeting_id,
         question=req.question
     )
+
+    return {
+        "answer": answer
+    }
