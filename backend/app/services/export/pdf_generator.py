@@ -1,6 +1,6 @@
 from pathlib import Path
 import json
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.units import inch
 from reportlab.platypus import (
@@ -8,10 +8,34 @@ from reportlab.platypus import (
     Paragraph,
     Spacer
 )
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+import os
 
 OUTPUT_DIR = Path("output")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
+BASE_DIR = Path(__file__).resolve().parents[3]
+FONT_DIR = BASE_DIR / "fonts"
+print("BASE_DIR:", BASE_DIR)
+print("FONT_DIR:", FONT_DIR)
+print(FONT_DIR)
+print((FONT_DIR / "NotoSansDevanagari-Regular.ttf").exists())
+print((FONT_DIR / "NotoSansGujarati-Regular.ttf").exists())
+
+pdfmetrics.registerFont(
+    TTFont(
+        "HindiFont",
+        str(FONT_DIR / "NotoSansDevanagari-Regular.ttf")
+    )
+)
+
+pdfmetrics.registerFont(
+    TTFont(
+        "GujaratiFont",
+        str(FONT_DIR / "NotoSansGujarati-Regular.ttf")
+    )
+)
 
 def load_json(value):
     if not value:
@@ -74,6 +98,13 @@ def generate_pdf(meeting):
     )
 
     styles = getSampleStyleSheet()
+    transcript_style = ParagraphStyle(
+    "TranscriptStyle",
+    parent=styles["BodyText"],
+    fontName="HindiFont",
+    fontSize=10,
+    leading=16,
+)
 
     styles["Title"].alignment = TA_CENTER
 
@@ -247,11 +278,11 @@ def generate_pdf(meeting):
         transcript = transcript.replace("\n", "<br/>")
 
         story.append(
-            Paragraph(
-                transcript,
-                styles["BodyText"]
-            )
-        )
+    Paragraph(
+        transcript,
+        transcript_style
+    )
+)
 
     doc.build(story)
 

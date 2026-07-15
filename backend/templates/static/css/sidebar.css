@@ -143,6 +143,12 @@
 
     border:1px solid transparent;
 
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
 }
 
 
@@ -193,5 +199,136 @@
     background:rgba(255,255,255,.15);
 
     border-radius:20px;
+
+}
+
+.meeting-name{
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    flex:1;
+
+}
+
+.meeting-controls{
+
+    display:flex;
+
+    gap:4px;
+
+    opacity:0;
+
+    transition:opacity .2s ease;
+
+    position:relative;
+
+}
+
+.meeting-item:hover .meeting-controls,
+.meeting-item.active .meeting-controls{
+
+    opacity:1;
+
+}
+
+.meeting-control{
+
+    width:24px;
+
+    height:24px;
+
+    padding:0;
+
+    border-radius:6px;
+
+    background:transparent;
+
+    color:inherit;
+
+    font-size:15px;
+
+}
+
+.meeting-menu-toggle{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    line-height:1;
+
+}
+
+.meeting-control:hover{
+
+    background:rgba(255,255,255,.12);
+
+}
+
+.meeting-menu{
+
+    display:none;
+
+    position:absolute;
+
+    z-index:20;
+
+    right:0;
+
+    top:30px;
+
+    min-width:112px;
+
+    padding:6px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:10px;
+
+    background:#1e293b;
+
+    box-shadow:0 12px 24px rgba(0,0,0,.3);
+
+}
+
+.meeting-menu.open{
+
+    display:grid;
+
+    gap:2px;
+
+}
+
+.meeting-menu button{
+
+    padding:8px 10px;
+
+    border-radius:7px;
+
+    background:transparent;
+
+    color:var(--text-primary);
+
+    text-align:left;
+
+    font-size:13px;
+
+}
+
+.meeting-menu button:hover{
+
+    background:rgba(255,255,255,.1);
+
+}
+
+.meeting-menu button.danger{
+
+    color:#fca5a5;
 
 }

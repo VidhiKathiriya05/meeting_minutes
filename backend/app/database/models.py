@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Boolean, Column, Integer, String, DateTime
 from datetime import datetime
 
 from app.database.database import Base
@@ -30,3 +30,4 @@ class Meeting(Base):
     speaker_transcript = Column(String, default="")
     embeddings = Column(String,default="")
     progress =Column(Integer, default=0)
+    pinned = Column(Boolean, default=False, nullable=False)

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from app import api
 from app.core.settings import settings
 from app.api.export import router as export_router
-from app.database.database import engine
+from app.database.database import engine, ensure_meetings_schema
 from app.database.models import Base
 from app.api.meeting import router as meeting_router
 from app.api.upload import router as upload_router
@@ -12,6 +12,7 @@ from app.api.frontend import router as frontend_router
 from app.api.chat import chat
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION
@@ -19,6 +20,7 @@ app = FastAPI(
 app.mount("/static", StaticFiles(directory="templates/static"), name="static")
 
 Base.metadata.create_all(bind=engine)
+ensure_meetings_schema()
 
 
 
@@ -27,11 +29,7 @@ app.include_router(upload_router)
 
 @app.get("/")
 def home():
-
-    return {
-        "Application": settings.APP_NAME,
-        "Version": settings.APP_VERSION
-    }
+    return RedirectResponse(url="/index")
 
 app.include_router(transcription_router)
 

@@ -16,18 +16,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static/font/lucide.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/css/variables.css">
-    <link rel="stylesheet" href="/static/css/layout.css">
-    <link rel="stylesheet" href="/static/css/sidebar.css">
-    <link rel="stylesheet" href="/static/css/navbar.css">
-    <link rel="stylesheet" href="/static/css/dashboard.css">
-    <link rel="stylesheet" href="/static/css/tabs.css">
-    <link rel="stylesheet" href="/static/css/chat.css">
-    <link rel="stylesheet" href="/static/css/transcript.css">
-    <link rel="stylesheet" href="/static/css/analytics.css">
-    <link rel="stylesheet" href="/static/css/summary.css">
-    <link rel="stylesheet" href="/static/css/animation.css">
-    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/variables.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/layout.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/sidebar.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/navbar.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/dashboard.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/tabs.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/chat.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/transcript.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/analytics.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/summary.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/animation.css?v=20260715">
+    <link rel="stylesheet" href="/static/css/responsive.css?v=20260715">
 </head>
 <body>
 <div class="app">
@@ -36,13 +36,14 @@
         <div class="logo">
             <h2>📄 Meeting Minutes</h2>
         </div>
-        <button class="upload-btn">
+        <button class="upload-btn" type="button">
             + Upload Meeting
         </button>
-        <div class="sidebar-search">
+        <input id="audioUpload" type="file" accept=".mp3,.wav,.m4a,audio/mpeg,audio/wav,audio/x-m4a" hidden>
+        <div class="sidebar-search" id="sidebarSearch">
             Search
         </div>
-        <div class="meeting-list">
+        <div class="meeting-list" id="meetingList">
             <h4>Today</h4>
             <div class="meeting-item active">
               📄  Sprint Planning
@@ -62,92 +63,7 @@
 
     <!-- Main -->
     <main class="main-content">
-        <!-- Navbar -->
-        <header class="navbar">
-            <input type="text" placeholder="🔍 Search meetings...">
-        </header>
-        <!-- Dashboard -->
-        <section class="dashboard">
-            <h1>Dashboard</h1>
-
-            <!-- KPI Cards -->
-            <div class="stats-grid">
-
-
-    <div class="stat-card">
-
-        <div class="stat-label">
-            Meetings
-        </div>
-
-        <div class="stat-value">
-            0
-        </div>
-
-        <div class="stat-footer">
-            Total meetings
-        </div>
-
-    </div>
-
-
-
-    <div class="stat-card">
-
-        <div class="stat-label">
-            Pending
-        </div>
-
-        <div class="stat-value">
-            0
-        </div>
-
-        <div class="stat-footer">
-            Processing
-        </div>
-
-    </div>
-
-
-
-    <div class="stat-card">
-
-        <div class="stat-label">
-            Completed
-        </div>
-
-        <div class="stat-value">
-            0
-        </div>
-
-        <div class="stat-footer">
-            Completed reports
-        </div>
-
-    </div>
-
-
-
-    <div class="stat-card">
-
-        <div class="stat-label">
-            Avg Time
-        </div>
-
-        <div class="stat-value">
-            0
-        </div>
-
-        <div class="stat-footer">
-            Processing speed
-        </div>
-
-    </div>
-
-
-</div>
-
-            <!-- Workspace -->
+        <!-- Workspace -->
             <div class="workspace">
 
     <div class="workspace-tabs">
@@ -202,7 +118,7 @@
                     </span>
 
                     <strong id="summaryTitle">
-                        Sprint Planning
+                        No meeting selected
                     </strong>
 
                 </div>
@@ -216,7 +132,7 @@
                     </span>
 
                     <strong id="summaryDate">
-                        14 July 2026
+                        -
                     </strong>
 
                 </div>
@@ -230,7 +146,7 @@
                     </span>
 
                     <strong id="summaryParticipants">
-                        Team Members
+                        -
                     </strong>
 
                 </div>
@@ -256,7 +172,7 @@
 
             <p id="summaryText">
 
-                Meeting summary will appear here after processing.
+                Upload an audio file to begin.
 
             </p>
 
@@ -278,20 +194,7 @@
 
 
             <ul id="summaryKeyPoints">
-
-                <li>
-                    Project planning discussion
-                </li>
-
-                <li>
-                    Task allocation
-                </li>
-
-                <li>
-                    Deployment timeline
-                </li>
-
-
+                <li>No key points available.</li>
             </ul>
 
 
@@ -312,10 +215,10 @@
             <div id="summaryActions">
                 <div class="action-item">
                     <span>
-                        Backend deployment
+                        No action items available.
                     </span>
                     <span class="status pending">
-                        Pending
+                        -
                     </span>
                 </div>
             </div>
@@ -328,34 +231,7 @@
     <div class="tab-panel" id="transcript">
 
     <div class="transcript-container">
-
-        <div class="speaker-card">
-
-            <div class="speaker-name">
-                Speaker 1
-            </div>
-
-            <pre>
-Welcome everyone.
-Let's start today's meeting.
-            </pre>
-
-        </div>
-
-
-        <div class="speaker-card">
-
-            <div class="speaker-name">
-                Speaker 2
-            </div>
-
-            <pre>
-Today's discussion is about deployment planning.
-            </pre>
-
-        </div>
-
-
+        <div class="speaker-card"><div class="speaker-name">Transcript</div><pre>Upload an audio file to view its transcript.</pre></div>
     </div>
 
 </div>
@@ -392,71 +268,41 @@ Today's discussion is about deployment planning.
     <div class="tab-panel" id="analytics">
 
     <div class="analytics-container">
-
-
         <div class="analytics-card">
-
             <div class="analytics-title">
-                Meeting Duration
+                Processing Phase
             </div>
-
             <div class="analytics-value">
-                45 min
+                -
             </div>
-
         </div>
-
-
-
         <div class="analytics-card">
-
             <div class="analytics-title">
                 Speakers
             </div>
-
             <div class="analytics-value">
-                5
+                -
             </div>
-
         </div>
-
-
-
         <div class="analytics-card">
-
             <div class="analytics-title">
                 Action Items
             </div>
-
             <div class="analytics-value">
-                12
+                0
             </div>
-
         </div>
-
-
-
         <div class="analytics-card">
-
             <div class="analytics-title">
                 Completion
             </div>
-
             <div class="analytics-value">
-                80%
+                0%
             </div>
-
-
             <div class="progress-bar">
-
-                <div class="progress-fill"></div>
-
+                <div class="progress-fill" style="width:0%"></div>
             </div>
-
-
         </div>
-
-
     </div>
 
 
@@ -465,8 +311,7 @@ Today's discussion is about deployment planning.
 
         AI Insight:
         <br>
-        Most discussion focused on project planning,
-        task ownership, and deployment decisions.
+        Upload an audio file to begin processing.
 
     </div>
 
@@ -474,10 +319,9 @@ Today's discussion is about deployment planning.
 </div>
     </div>
 </div>
-    </section>
     </main>
 </div>
-<script src="/static/js/app.js"></script>
-<script src ="/static/js/chat.js"></script>
+<script src="/static/js/app.js?v=20260715"></script>
+<script src ="/static/js/chat.js?v=20260715"></script>
 </body>
 </html>
